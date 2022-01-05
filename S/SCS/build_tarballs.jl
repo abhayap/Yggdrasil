@@ -1,7 +1,7 @@
 using BinaryBuilder
 
 name = "SCS"
-version = v"3.0.1"
+version = v"3.0.0"
 
 # Collection of sources required to build SCSBuilder
 sources = [
@@ -23,7 +23,7 @@ cp out/libscs*.${dlext} ${libdir}
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = supported_platforms(;experimental=true)
+platforms = supported_platforms()
 
 # The products that we will ensure are always built
 products = [
@@ -33,8 +33,12 @@ products = [
 
 # Dependencies that must be installed before this package can be built
 dependencies = [
-    Dependency("OpenBLAS32_jll", v"0.3.10"),
+    Dependency("OpenBLAS32_jll", v"0.3.17"),
 ]
 
+# Increment the version for the new build
+version = v"3.0.2"
+
 # Build the tarballs, and possibly a `build.jl` as well
-build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies, julia_compat="1.6")
+build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies; julia_compat="1.7")
+
